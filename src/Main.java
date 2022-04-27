@@ -76,7 +76,24 @@ public class Main {
 
         switch(opcaoMenu) {
             case 1:
-                
+               conta.depositar();
+               break;
+
+            case 2:
+                conta.sacar();
+                break;
+
+            case 3:
+                conta.transferir();
+                break;
+
+            case 4:
+                conta.mostrarDados();
+                break;
+
+            case 5:
+                menuInicial();
+                break;
         }
     }
 
