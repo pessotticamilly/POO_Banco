@@ -10,7 +10,7 @@ public class Main {
     }
 
     static void menuInicial() {
-        System.out.print("\n---- MENU ----" +
+        System.out.print("\n---- MENU INICIAL ----" +
                 "\n1 - Criar conta" +
                 "\n2 - Selecionar conta" +
                 "\n3 - Excluir conta" +
@@ -32,7 +32,14 @@ public class Main {
                                  "\nR: ");
                 numeroConta = sc.nextInt();
 
-                Banco.procurarConta(numeroConta);
+                ContaBancaria conta = Banco.procurarConta(numeroConta);
+
+                if(conta == null){
+                    System.out.print("\nConta inexistente!");
+                } else {
+                    menuConta(conta);
+                }
+
                 menuInicial();
                 break;
 
@@ -57,8 +64,20 @@ public class Main {
         }
     }
 
-    static void menuConta(int numeroConta) {
+    private static void menuConta(ContaBancaria conta){
+        System.out.print("\n---- MENU DA CONTA ----" +
+                         "\n1 - Depositar" +
+                         "\n2 - Sacar" +
+                         "\n3 - Transferir" +
+                         "\n4 - Gerar relatório" +
+                         "\n5 - Voltar" +
+                         "\nR: ");
+        int opcaoMenu = sc.nextInt();
 
+        switch(opcaoMenu) {
+            case 1:
+                
+        }
     }
 
     static int tipoConta() {

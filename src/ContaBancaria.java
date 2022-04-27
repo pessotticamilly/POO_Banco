@@ -14,7 +14,7 @@ public abstract class ContaBancaria {
 
     public abstract void transferir();
 
-    public abstract void mostrarDados();
+    public abstract String mostrarDados();
 
     @Override
     public String toString() {

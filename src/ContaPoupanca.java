@@ -17,8 +17,8 @@ public class ContaPoupanca extends ContaBancaria {
     }
 
     @Override
-    public void mostrarDados() {
-        toString();
+    public String mostrarDados() {
+        return toString();
     }
 
     @Override

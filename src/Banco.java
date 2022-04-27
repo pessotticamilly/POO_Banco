@@ -17,11 +17,14 @@ public class Banco {
         return "\nConta cadastrada com sucesso!";
     }
 
-    public static void procurarConta(int numeroConta) {
+    public static ContaBancaria procurarConta(int numeroConta) {
         for(int i = 0; i < listaContasBancarias.size(); i++){
             if(numeroConta == listaContasBancarias.get(i).getNumeroConta()){
+                return listaContasBancarias.get(i);
             }
         }
+
+        return null;
     }
 
     public static String removerConta(int numeroConta) {
