@@ -76,7 +76,11 @@ public class Main {
 
         switch(opcaoMenu) {
             case 1:
-               conta.depositar();
+                System.out.print("\nQual o valor que voce desejas depositar?" +
+                                 "\nR: ");
+                double valor = sc.nextDouble();
+
+               conta.depositar(valor);
                break;
 
             case 2:

@@ -7,7 +7,8 @@ public class ContaCorrente extends ContaBancaria {
     }
 
     @Override
-    public void depositar() {
+    public void depositar(double valor) {
+        this.setSaldo(this.getSaldo() + valor);
     }
 
     @Override

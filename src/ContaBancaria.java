@@ -8,7 +8,7 @@ public abstract class ContaBancaria {
         this.taxaOperacao = taxaOperacao;
     }
 
-    public abstract void depositar();
+    public abstract void depositar(double valor);
 
     public abstract void sacar();
 
