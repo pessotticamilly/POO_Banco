@@ -6,10 +6,10 @@ public class Main {
     public static void main(String[] args) {
         Banco banco = new Banco(1);
 
-        menu();
+        menuInicial();
     }
 
-    static void menu() {
+    static void menuInicial() {
         System.out.print("\n---- MENU ----" +
                 "\n1 - Criar conta" +
                 "\n2 - Selecionar conta" +
@@ -19,28 +19,35 @@ public class Main {
                 "\nR: ");
         int opcaoMenu = sc.nextInt();
 
+        int numeroConta;
+
         switch(opcaoMenu) {
             case 1:
                 System.out.print(Banco.inserirConta());
-                menu();
+                menuInicial();
                 break;
 
             case 2:
-                selecionarConta();
+                System.out.print("\nQual o número da conta desejas acessar?" +
+                                 "\nR: ");
+                numeroConta = sc.nextInt();
+
+                Banco.procurarConta(numeroConta);
+                menuInicial();
                 break;
 
             case 3:
                 System.out.print("\nQual o número da conta que desejas excluir?" +
                         "\nR: ");
-                int numeroConta = sc.nextInt();
+                numeroConta = sc.nextInt();
 
                 System.out.print(Banco.removerConta(numeroConta));
-                menu();
+                menuInicial();
                 break;
 
             case 4:
                 Banco.mostrarDados();
-                menu();
+                menuInicial();
                 break;
 
             case 5:
@@ -50,7 +57,7 @@ public class Main {
         }
     }
 
-    private static void selecionarConta() {
+    static void menuConta(int numeroConta) {
 
     }
 

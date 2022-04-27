@@ -17,6 +17,13 @@ public class Banco {
         return "\nConta cadastrada com sucesso!";
     }
 
+    public static void procurarConta(int numeroConta) {
+        for(int i = 0; i < listaContasBancarias.size(); i++){
+            if(numeroConta == listaContasBancarias.get(i).getNumeroConta()){
+            }
+        }
+    }
+
     public static String removerConta(int numeroConta) {
         for(int i = 0; i < listaContasBancarias.size(); i++){
             if(numeroConta == listaContasBancarias.get(i).getNumeroConta()){
@@ -27,10 +34,6 @@ public class Banco {
         }
 
         return "\nConta inexistente!";
-    }
-
-    public static void procurarConta() {
-
     }
 
     public static void mostrarDados() {
