@@ -74,20 +74,34 @@ public class Main {
                          "\nR: ");
         int opcaoMenu = sc.nextInt();
 
+        double valor = 0;
+
         switch(opcaoMenu) {
             case 1:
                 System.out.print("\nQual o valor que voce desejas depositar?" +
                                  "\nR: ");
-                double valor = sc.nextDouble();
+                valor = sc.nextDouble();
 
                conta.depositar(valor);
                break;
 
             case 2:
-                conta.sacar();
+                System.out.print("\nQual o valor que voce desejas sacar?" +
+                        "\nR: ");
+                valor = sc.nextDouble();
+
+                conta.sacar(valor);
                 break;
 
             case 3:
+                System.out.print("\nQual o valor que voce desejas sacar?" +
+                        "\nR: ");
+                valor = sc.nextDouble();
+
+                System.out.print("\nPara qual conta desejas transferir?" +
+                        "\nR: ");
+                int numeroConta = sc.nextInt();
+                
                 conta.transferir();
                 break;
 
