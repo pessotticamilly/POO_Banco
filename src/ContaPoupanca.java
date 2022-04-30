@@ -10,6 +10,11 @@ public class ContaPoupanca extends ContaBancaria {
 
     @Override
     public void sacar(double valor) {
+        if(valor <= this.getSaldo() && valor >= 1) {
+            this.setSaldo(this.getSaldo() - valor);
+        } else {
+
+        }
     }
 
     @Override

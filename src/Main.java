@@ -64,7 +64,7 @@ public class Main {
         }
     }
 
-    private static void menuConta(ContaBancaria conta){
+    static void menuConta(ContaBancaria conta){
         System.out.print("\n---- MENU DA CONTA ----" +
                          "\n1 - Depositar" +
                          "\n2 - Sacar" +
@@ -83,6 +83,8 @@ public class Main {
                 valor = sc.nextDouble();
 
                conta.depositar(valor);
+
+               menuConta(conta);
                break;
 
             case 2:
@@ -91,6 +93,8 @@ public class Main {
                 valor = sc.nextDouble();
 
                 conta.sacar(valor);
+
+                menuConta(conta);
                 break;
 
             case 3:
@@ -103,10 +107,14 @@ public class Main {
                 int numeroConta = sc.nextInt();
                 
                 conta.transferir();
+
+                menuConta(conta);
                 break;
 
             case 4:
-                conta.mostrarDados();
+                System.out.print(conta.mostrarDados());
+
+                menuConta(conta);
                 break;
 
             case 5:
@@ -150,5 +158,9 @@ public class Main {
         }
 
         return null;
+    }
+
+    static void semSaldo() {
+        System.out.print("\nSaldo insuficiente!");
     }
 }

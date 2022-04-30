@@ -13,10 +13,17 @@ public class ContaCorrente extends ContaBancaria {
 
     @Override
     public void sacar(double valor) {
-        if(valor <= this.getSaldo()){
-
+        if (valor <= this.getSaldo() && valor >= 1) {
+            this.setSaldo(this.getSaldo() - valor);
+        } else if (valor <= (this.getSaldo() + this.limiteCreditoSaque) && valor >= 1) {
+            valor = valor - this.getSaldo();
+            this.setSaldo(0);
+            this.limiteCreditoSaque = this.limiteCreditoSaque - valor;
+        } else{
+            Main.semSaldo();
         }
     }
+
 
     @Override
     public void transferir() {
