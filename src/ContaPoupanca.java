@@ -13,7 +13,7 @@ public class ContaPoupanca extends ContaBancaria {
         if(valor <= this.getSaldo() && valor >= 1) {
             this.setSaldo(this.getSaldo() - valor);
         } else {
-
+            Main.semSaldo();
         }
     }
 

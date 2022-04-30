@@ -24,7 +24,6 @@ public class ContaCorrente extends ContaBancaria {
         }
     }
 
-
     @Override
     public void transferir() {
 
@@ -40,13 +39,5 @@ public class ContaCorrente extends ContaBancaria {
         return super.toString() +
                 "\nLimite de crédito para saque: " + limiteCreditoSaque +
                 "\n- - - - - - - - - - - - - - - - - - - -";
-    }
-
-    public double getLimiteCreditoSaque() {
-        return limiteCreditoSaque;
-    }
-
-    public void setLimiteCreditoSaque(double limiteCreditoSaldo) {
-        this.limiteCreditoSaque = limiteCreditoSaldo;
     }
 }

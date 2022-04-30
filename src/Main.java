@@ -53,7 +53,8 @@ public class Main {
                 break;
 
             case 4:
-                Banco.mostrarDados();
+                System.out.print(Banco.mostrarDados());
+
                 menuInicial();
                 break;
 
