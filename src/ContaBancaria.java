@@ -12,7 +12,7 @@ public abstract class ContaBancaria {
 
     public abstract void sacar(double valor);
 
-    public abstract void transferir();
+    public abstract void transferir(double valor, int numeroConta);
 
     public abstract String mostrarDados();
 

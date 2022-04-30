@@ -19,13 +19,13 @@ public class ContaCorrente extends ContaBancaria {
             valor = valor - this.getSaldo();
             this.setSaldo(0);
             this.limiteCreditoSaque = this.limiteCreditoSaque - valor;
-        } else{
+        } else {
             Main.semSaldo();
         }
     }
 
     @Override
-    public void transferir() {
+    public void transferir(double valor, int numeroConta) {
 
     }
 
@@ -38,6 +38,6 @@ public class ContaCorrente extends ContaBancaria {
     public String toString() {
         return super.toString() +
                 "\nLimite de crédito para saque: " + limiteCreditoSaque +
-                "\n- - - - - - - - - - - - - - - - - - - -";
+                "\n- - - - - - - - - - - - - - - - - - - -\n";
     }
 }

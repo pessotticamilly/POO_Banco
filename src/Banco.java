@@ -18,8 +18,8 @@ public class Banco {
     }
 
     public static ContaBancaria procurarConta(int numeroConta) {
-        for(int i = 0; i < listaContasBancarias.size(); i++){
-            if(numeroConta == listaContasBancarias.get(i).getNumeroConta()){
+        for (int i = 0; i < listaContasBancarias.size(); i++) {
+            if (numeroConta == listaContasBancarias.get(i).getNumeroConta()) {
                 return listaContasBancarias.get(i);
             }
         }
@@ -28,8 +28,8 @@ public class Banco {
     }
 
     public static String removerConta(int numeroConta) {
-        for(int i = 0; i < listaContasBancarias.size(); i++){
-            if(numeroConta == listaContasBancarias.get(i).getNumeroConta()){
+        for (int i = 0; i < listaContasBancarias.size(); i++) {
+            if (numeroConta == listaContasBancarias.get(i).getNumeroConta()) {
                 listaContasBancarias.remove(i);
 
                 return "\nConta excluída com sucesso!";
@@ -40,10 +40,10 @@ public class Banco {
     }
 
     public static String mostrarDados() {
-        for(int i = 0; i < listaContasBancarias.size(); i++){
-                return listaContasBancarias.get(i).toString();
+        for (int i = 0; i < listaContasBancarias.size(); i++) {
+            return listaContasBancarias.get(i).toString();
         }
 
         return null;
     }
-    }
+}

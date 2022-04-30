@@ -107,7 +107,7 @@ public class Main {
                         "\nR: ");
                 int numeroConta = sc.nextInt();
                 
-                conta.transferir();
+                conta.transferir(valor, numeroConta);
 
                 menuConta(conta);
                 break;
@@ -120,7 +120,7 @@ public class Main {
 
             case 5:
                 menuInicial();
-                break;
+                break; 
         }
     }
 
