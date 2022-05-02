@@ -39,11 +39,7 @@ public class Banco {
         return "\nConta inexistente!";
     }
 
-    public static String mostrarDados() {
-        for (int i = 0; i < listaContasBancarias.size(); i++) {
-            return listaContasBancarias.get(i).toString();
-        }
-
-        return null;
+    public static String mostrarDados(int i) {
+        return listaContasBancarias.get(i).toString() + "\n- - - - - - - - - - - - - - - -\n";
     }
 }

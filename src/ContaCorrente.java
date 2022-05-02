@@ -26,7 +26,13 @@ public class ContaCorrente extends ContaBancaria {
 
     @Override
     public void transferir(double valor, int numeroConta) {
+        sacar(valor);
 
+        for (int i = 0; i < Banco.listaContasBancarias.size(); i++) {
+            if (numeroConta == Banco.listaContasBancarias.get(i).getNumeroConta()) {
+                Banco.listaContasBancarias.get(i).depositar(valor);
+            }
+        }
     }
 
     @Override
@@ -37,7 +43,6 @@ public class ContaCorrente extends ContaBancaria {
     @Override
     public String toString() {
         return super.toString() +
-                "\nLimite de crédito para saque: " + limiteCreditoSaque +
-                "\n- - - - - - - - - - - - - - - - - - - -\n";
+                "\nLimite de crédito para saque: " + limiteCreditoSaque;
     }
 }

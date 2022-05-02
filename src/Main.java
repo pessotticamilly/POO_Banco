@@ -5,6 +5,11 @@ public class Main {
 
     public static void main(String[] args) {
         Banco banco = new Banco(1);
+        ContaBancaria conta1 = new ContaCorrente(1, 100, 0.2, 1000);
+        Banco.listaContasBancarias.add(conta1);
+
+        ContaBancaria conta2 = new ContaCorrente(2, 100, 0.2, 1000);
+        Banco.listaContasBancarias.add(conta2);
 
         menuInicial();
     }
@@ -21,7 +26,7 @@ public class Main {
 
         int numeroConta;
 
-        switch(opcaoMenu) {
+        switch (opcaoMenu) {
             case 1:
                 System.out.print(Banco.inserirConta());
                 menuInicial();
@@ -29,12 +34,12 @@ public class Main {
 
             case 2:
                 System.out.print("\nQual o número da conta desejas acessar?" +
-                                 "\nR: ");
+                        "\nR: ");
                 numeroConta = sc.nextInt();
 
                 ContaBancaria conta = Banco.procurarConta(numeroConta);
 
-                if(conta == null){
+                if (conta == null) {
                     System.out.print("\nConta inexistente!");
                 } else {
                     menuConta(conta);
@@ -53,8 +58,10 @@ public class Main {
                 break;
 
             case 4:
-                System.out.print(Banco.mostrarDados());
+                for (int i = 0; i < Banco.listaContasBancarias.size(); i++) {
+                    System.out.print(Banco.mostrarDados(i));
 
+                }
                 menuInicial();
                 break;
 
@@ -65,31 +72,31 @@ public class Main {
         }
     }
 
-    static void menuConta(ContaBancaria conta){
+    static void menuConta(ContaBancaria conta) {
         System.out.print("\n---- MENU DA CONTA ----" +
-                         "\n1 - Depositar" +
-                         "\n2 - Sacar" +
-                         "\n3 - Transferir" +
-                         "\n4 - Gerar relatório" +
-                         "\n5 - Voltar" +
-                         "\nR: ");
+                "\n1 - Depositar" +
+                "\n2 - Sacar" +
+                "\n3 - Transferir" +
+                "\n4 - Gerar relatório" +
+                "\n5 - Voltar" +
+                "\nR: ");
         int opcaoMenu = sc.nextInt();
 
         double valor = 0;
 
-        switch(opcaoMenu) {
+        switch (opcaoMenu) {
             case 1:
-                System.out.print("\nQual o valor que voce desejas depositar?" +
-                                 "\nR: ");
+                System.out.print("\nQual o valor que você desejas depositar?" +
+                        "\nR: ");
                 valor = sc.nextDouble();
 
-               conta.depositar(valor);
+                conta.depositar(valor);
 
-               menuConta(conta);
-               break;
+                menuConta(conta);
+                break;
 
             case 2:
-                System.out.print("\nQual o valor que voce desejas sacar?" +
+                System.out.print("\nQual o valor que você desejas sacar?" +
                         "\nR: ");
                 valor = sc.nextDouble();
 
@@ -99,14 +106,14 @@ public class Main {
                 break;
 
             case 3:
-                System.out.print("\nQual o valor que voce desejas sacar?" +
+                System.out.print("\nQual o valor que você desejas sacar?" +
                         "\nR: ");
                 valor = sc.nextDouble();
 
                 System.out.print("\nPara qual conta desejas transferir?" +
                         "\nR: ");
                 int numeroConta = sc.nextInt();
-                
+
                 conta.transferir(valor, numeroConta);
 
                 menuConta(conta);
@@ -120,15 +127,15 @@ public class Main {
 
             case 5:
                 menuInicial();
-                break; 
+                break;
         }
     }
 
     static int tipoConta() {
         System.out.print("\nQual o tipo da conta?" +
-                         "\n1 - Conta corrente" +
-                         "\n2 - Conta poupança" +
-                         "\nR: ");
+                "\n1 - Conta corrente" +
+                "\n2 - Conta poupança" +
+                "\nR: ");
         int tipoConta = sc.nextInt();
 
         return tipoConta;
@@ -136,25 +143,25 @@ public class Main {
 
     static ContaBancaria coletaDadosConta(int tipoConta) {
         System.out.print("\nQual é o número da conta?" +
-                         "\nR: ");
+                "\nR: ");
         int numeroConta = sc.nextInt();
 
         System.out.print("\nQual é o saldo?" +
-                         "\nR: ");
+                "\nR: ");
         double saldo = sc.nextDouble();
 
         System.out.print("\nQual é a taxa de operação?" +
                 "\nR: ");
         double taxaOperacao = sc.nextDouble();
 
-        if(tipoConta == 1){
+        if (tipoConta == 1) {
             System.out.print("\nQual é o limite de crédito para saque?" +
-                             "\nR: ");
+                    "\nR: ");
             double limiteCreditoSaque = sc.nextDouble();
 
             return new ContaCorrente(numeroConta, saldo, taxaOperacao, limiteCreditoSaque);
 
-        } else if(tipoConta == 2){
+        } else if (tipoConta == 2) {
             return new ContaPoupanca(numeroConta, saldo, taxaOperacao);
         }
 

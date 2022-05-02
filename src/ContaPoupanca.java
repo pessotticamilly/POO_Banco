@@ -19,7 +19,13 @@ public class ContaPoupanca extends ContaBancaria {
 
     @Override
     public void transferir(double valor, int numeroConta) {
+        sacar(valor);
 
+        for (int i = 0; i < Banco.listaContasBancarias.size(); i++) {
+            if (numeroConta == Banco.listaContasBancarias.get(i).getNumeroConta()) {
+                Banco.listaContasBancarias.get(i).depositar(valor);
+            }
+        }
     }
 
     @Override
@@ -29,7 +35,6 @@ public class ContaPoupanca extends ContaBancaria {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "\n- - - - - - - - - - - - - - - - - - - -";
+        return super.toString();
     }
 }
