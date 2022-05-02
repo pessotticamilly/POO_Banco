@@ -26,23 +26,11 @@ public abstract class ContaBancaria {
         return numeroConta;
     }
 
-    public void setNumeroConta(int numeroConta) {
-        this.numeroConta = numeroConta;
-    }
-
     public double getSaldo() {
         return saldo;
     }
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
-    }
-
-    public double getTaxaOperacao() {
-        return taxaOperacao;
-    }
-
-    public void setTaxaOperacao(double taxaOperacao) {
-        this.taxaOperacao = taxaOperacao;
     }
 }

@@ -4,7 +4,6 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Banco banco = new Banco(1);
         ContaBancaria conta1 = new ContaCorrente(1, 100, 0.2, 1000);
         Banco.listaContasBancarias.add(conta1);
 
@@ -82,7 +81,7 @@ public class Main {
                 "\nR: ");
         int opcaoMenu = sc.nextInt();
 
-        double valor = 0;
+        double valor;
 
         switch (opcaoMenu) {
             case 1:
@@ -136,9 +135,8 @@ public class Main {
                 "\n1 - Conta corrente" +
                 "\n2 - Conta poupança" +
                 "\nR: ");
-        int tipoConta = sc.nextInt();
 
-        return tipoConta;
+        return sc.nextInt();
     }
 
     static ContaBancaria coletaDadosConta(int tipoConta) {

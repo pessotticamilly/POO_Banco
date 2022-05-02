@@ -1,12 +1,9 @@
 import java.util.ArrayList;
 
 public class Banco {
-    private int codigo;
     static ArrayList<ContaBancaria> listaContasBancarias = new ArrayList<>();
 
-    public Banco(int codigo) {
-        this.codigo = codigo;
-    }
+    public Banco() {}
 
     public static String inserirConta() {
         int tipoConta = Main.tipoConta();
@@ -18,9 +15,9 @@ public class Banco {
     }
 
     public static ContaBancaria procurarConta(int numeroConta) {
-        for (int i = 0; i < listaContasBancarias.size(); i++) {
-            if (numeroConta == listaContasBancarias.get(i).getNumeroConta()) {
-                return listaContasBancarias.get(i);
+        for (ContaBancaria listaContasBancaria : listaContasBancarias) {
+            if (numeroConta == listaContasBancaria.getNumeroConta()) {
+                return listaContasBancaria;
             }
         }
 
