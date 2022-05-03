@@ -99,7 +99,7 @@ public class Main {
                         "\nR: ");
                 valor = sc.nextDouble();
 
-                conta.sacar(valor);
+                System.out.print(conta.sacar(valor));
 
                 menuConta(conta);
                 break;
@@ -164,9 +164,5 @@ public class Main {
         }
 
         return null;
-    }
-
-    static void semSaldo() {
-        System.out.print("\nSaldo insuficiente!\n");
     }
 }

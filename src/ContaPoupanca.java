@@ -9,17 +9,19 @@ public class ContaPoupanca extends ContaBancaria {
     }
 
     @Override
-    public void sacar(double valor) {
+    public String sacar(double valor) {
         if (valor <= this.getSaldo() && valor >= 1) {
             this.setSaldo(this.getSaldo() - valor);
         } else {
-            Main.semSaldo();
+            return "\nSaldo insuficiente!\n";
         }
+
+        return null;
     }
 
     @Override
     public void transferir(double valor, int numeroConta) {
-        sacar(valor);
+        this.sacar(valor);
 
         for (int i = 0; i < Banco.listaContasBancarias.size(); i++) {
             if (numeroConta == Banco.listaContasBancarias.get(i).getNumeroConta()) {

@@ -12,7 +12,7 @@ public class ContaCorrente extends ContaBancaria {
     }
 
     @Override
-    public void sacar(double valor) {
+    public String sacar(double valor) {
         if (valor <= this.getSaldo() && valor >= 1) {
             this.setSaldo(this.getSaldo() - valor);
         } else if (valor <= (this.getSaldo() + this.limiteCreditoSaque) && valor >= 1) {
@@ -20,13 +20,15 @@ public class ContaCorrente extends ContaBancaria {
             this.setSaldo(0);
             this.limiteCreditoSaque = this.limiteCreditoSaque - valor;
         } else {
-            Main.semSaldo();
+            return "\nSaldo insuficiente!\n";
         }
+
+        return null;
     }
 
     @Override
     public void transferir(double valor, int numeroConta) {
-        sacar(valor);
+        this.sacar(valor);
 
         for (int i = 0; i < Banco.listaContasBancarias.size(); i++) {
             if (numeroConta == Banco.listaContasBancarias.get(i).getNumeroConta()) {
