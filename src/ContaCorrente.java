@@ -1,5 +1,6 @@
 public class ContaCorrente extends ContaBancaria {
     private double limiteCreditoSaque;
+    int cont = 0;
 
     public ContaCorrente(int numeroConta, double saldo, double taxaOperacao, double limiteCreditoSaque) {
         super(numeroConta, saldo, taxaOperacao);
@@ -33,6 +34,14 @@ public class ContaCorrente extends ContaBancaria {
         for (int i = 0; i < Banco.listaContasBancarias.size(); i++) {
             if (numeroConta == Banco.listaContasBancarias.get(i).getNumeroConta()) {
                 Banco.listaContasBancarias.get(i).depositar(valor);
+            }
+        }
+
+        cont = cont + 1;
+
+        if(cont > 3){
+            if(this.getSaldo() > valor) {
+                this.setSaldo(this.getSaldo() - (valor * this.getTaxaOperacao()));
             }
         }
     }
