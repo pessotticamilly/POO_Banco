@@ -11,7 +11,7 @@ public class Banco {
         ContaBancaria conta = Main.coletaDadosConta(tipoConta);
         listaContasBancarias.add(conta);
 
-        return "\nConta cadastrada com sucesso!";
+        return "\nConta cadastrada com sucesso!\n";
     }
 
     public static ContaBancaria procurarConta(int numeroConta) {
@@ -29,11 +29,11 @@ public class Banco {
             if (numeroConta == listaContasBancarias.get(i).getNumeroConta()) {
                 listaContasBancarias.remove(i);
 
-                return "\nConta excluída com sucesso!";
+                return "\nConta excluída com sucesso!\n";
             }
         }
 
-        return "\nConta inexistente!";
+        return "\nConta inexistente!\n";
     }
 
     public static String mostrarDados(int i) {

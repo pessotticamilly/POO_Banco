@@ -39,7 +39,7 @@ public class Main {
                 ContaBancaria conta = Banco.procurarConta(numeroConta);
 
                 if (conta == null) {
-                    System.out.print("\nConta inexistente!");
+                    System.out.print("\nConta inexistente!\n");
                 } else {
                     menuConta(conta);
                 }
@@ -105,7 +105,7 @@ public class Main {
                 break;
 
             case 3:
-                System.out.print("\nQual o valor que você desejas sacar?" +
+                System.out.print("\nQual o valor que você desejas transferir?" +
                         "\nR: ");
                 valor = sc.nextDouble();
 
@@ -167,6 +167,6 @@ public class Main {
     }
 
     static void semSaldo() {
-        System.out.print("\nSaldo insuficiente!");
+        System.out.print("\nSaldo insuficiente!\n");
     }
 }

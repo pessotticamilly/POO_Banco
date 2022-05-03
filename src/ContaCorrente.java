@@ -1,7 +1,7 @@
 public class ContaCorrente extends ContaBancaria {
     private double limiteCreditoSaque;
 
-    public ContaCorrente(int numeroConta, double saldo, double taxaOperacao, double creditoSaldo) {
+    public ContaCorrente(int numeroConta, double saldo, double taxaOperacao, double limiteCreditoSaque) {
         super(numeroConta, saldo, taxaOperacao);
         this.limiteCreditoSaque = limiteCreditoSaque;
     }
