@@ -6,10 +6,9 @@ public class Banco {
     public Banco() {}
 
     public static String inserirConta() {
-        int tipoConta = Main.tipoConta();
-
-        ContaBancaria conta = Main.coletaDadosConta(tipoConta);
-        listaContasBancarias.add(conta);
+           int tipoConta = Main.tipoConta();
+           ContaBancaria conta = Main.coletaDadosConta(tipoConta);
+           listaContasBancarias.add(conta);
 
         return "\nConta cadastrada com sucesso!\n";
     }
@@ -21,7 +20,7 @@ public class Banco {
             }
         }
 
-        return null;
+        throw new ContaInexistente();
     }
 
     public static String removerConta(int numeroConta) {
@@ -33,7 +32,7 @@ public class Banco {
             }
         }
 
-        return "\nConta inexistente!\n";
+        throw new ContaInexistente();
     }
 
     public static String mostrarDados(int i) {

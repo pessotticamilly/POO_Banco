@@ -25,53 +25,68 @@ public class Main {
 
         int numeroConta;
 
-        switch (opcaoMenu) {
-            case 1:
-                System.out.print(Banco.inserirConta());
-                menuInicial();
-                break;
+        try {
+            switch (opcaoMenu) {
+                case 1:
+                    try {
+                        System.out.print(Banco.inserirConta());
+                        menuInicial();
+                    } catch (ContaExistente exception) {
+                        System.out.print("\n" + exception.getClass().getSimpleName() + ": " + exception.getMessage() + "\n");
+                        menuInicial();
+                    }
+                    break;
 
-            case 2:
-                System.out.print("\nQual o número da conta desejas acessar?" +
-                        "\nR: ");
-                numeroConta = sc.nextInt();
+                case 2:
+                    System.out.print("\nQual o número da conta desejas acessar?" +
+                            "\nR: ");
+                    numeroConta = sc.nextInt();
 
-                ContaBancaria conta = Banco.procurarConta(numeroConta);
+                    try {
+                        ContaBancaria conta = Banco.procurarConta(numeroConta);
+                        menuConta(conta);
+                    } catch (ContaInexistente exception) {
+                        System.out.print("\n" + exception.getClass().getSimpleName() + ": " + exception.getMessage() + "\n");
+                        menuInicial();
+                    }
+                    break;
 
-                if (conta == null) {
-                    System.out.print("\nConta inexistente!\n");
-                } else {
-                    menuConta(conta);
-                }
+                case 3:
+                    System.out.print("\nQual o número da conta que desejas excluir?" +
+                            "\nR: ");
+                    numeroConta = sc.nextInt();
 
-                menuInicial();
-                break;
+                    try {
+                        System.out.print(Banco.removerConta(numeroConta));
+                    } catch (ContaInexistente exception) {
+                        System.out.print("\n" + exception.getClass().getSimpleName() + ": " + exception.getMessage() + "\n");
+                        menuInicial();
+                    }
+                    break;
 
-            case 3:
-                System.out.print("\nQual o número da conta que desejas excluir?" +
-                        "\nR: ");
-                numeroConta = sc.nextInt();
+                case 4:
+                    for (int i = 0; i < Banco.listaContasBancarias.size(); i++) {
+                        System.out.print(Banco.mostrarDados(i));
 
-                System.out.print(Banco.removerConta(numeroConta));
-                menuInicial();
-                break;
+                    }
+                    menuInicial();
+                    break;
 
-            case 4:
-                for (int i = 0; i < Banco.listaContasBancarias.size(); i++) {
-                    System.out.print(Banco.mostrarDados(i));
+                case 5:
+                    System.out.print("\nEncerrando...");
+                    System.exit(0);
+                    break;
 
-                }
-                menuInicial();
-                break;
-
-            case 5:
-                System.out.print("\nEncerrando...");
-                System.exit(0);
-                break;
+                default:
+                    throw new OpcaoInvalida();
+            }
+        } catch (OpcaoInvalida exception) {
+            System.out.print("\n" + exception.getClass().getSimpleName() + ": " + exception.getMessage());
+            menuInicial();
         }
     }
 
-    static void menuConta(ContaBancaria conta) {
+    static void menuConta(ContaBancaria conta) throws OpcaoInvalida {
         System.out.print("\n---- MENU DA CONTA ----" +
                 "\n1 - Depositar" +
                 "\n2 - Sacar" +
@@ -99,9 +114,12 @@ public class Main {
                         "\nR: ");
                 valor = sc.nextDouble();
 
-                System.out.print(conta.sacar(valor));
-
-                menuConta(conta);
+                try{
+                    System.out.print(conta.sacar(valor));
+                    menuConta(conta);
+                } catch (SaldoInsuficiente | LimiteInsuficiente exception){
+                    System.out.print("\n" + exception.getClass().getSimpleName() + ": " + exception.getMessage() + "\n");
+                }
                 break;
 
             case 3:
@@ -113,7 +131,11 @@ public class Main {
                         "\nR: ");
                 int numeroConta = sc.nextInt();
 
-                conta.transferir(valor, numeroConta);
+                try {
+                    conta.transferir(valor, numeroConta);
+                } catch(ContaInexistente exception){
+                    System.out.print("\n" + exception.getClass().getSimpleName() + ": " + exception.getMessage() + "\n");
+                }
 
                 menuConta(conta);
                 break;
@@ -127,6 +149,9 @@ public class Main {
             case 5:
                 menuInicial();
                 break;
+
+            default:
+                throw new OpcaoInvalida();
         }
     }
 
@@ -139,30 +164,46 @@ public class Main {
         return sc.nextInt();
     }
 
-    static ContaBancaria coletaDadosConta(int tipoConta) {
+    static ContaBancaria coletaDadosConta(int tipoConta) throws ContaExistente {
         System.out.print("\nQual é o número da conta?" +
                 "\nR: ");
         int numeroConta = sc.nextInt();
 
-        System.out.print("\nQual é o saldo?" +
-                "\nR: ");
-        double saldo = sc.nextDouble();
+        boolean condicao = false;
 
-        System.out.print("\nQual é a taxa de operação?" +
-                "\nR: ");
-        double taxaOperacao = sc.nextDouble();
-
-        if (tipoConta == 1) {
-            System.out.print("\nQual é o limite de crédito para saque?" +
-                    "\nR: ");
-            double limiteCreditoSaque = sc.nextDouble();
-
-            return new ContaCorrente(numeroConta, saldo, taxaOperacao, limiteCreditoSaque);
-
-        } else if (tipoConta == 2) {
-            return new ContaPoupanca(numeroConta, saldo, taxaOperacao);
+        for(int i = 0; i < Banco.listaContasBancarias.size(); i++){
+            if(numeroConta == Banco.listaContasBancarias.get(i).getNumeroConta()){
+                System.out.print("\nEntrou");
+                condicao = false;
+                break;
+            } else{
+                condicao = true;
+            }
         }
 
+        if(condicao == true) {
+            System.out.print("\nQual é o saldo?" +
+                    "\nR: ");
+            double saldo = sc.nextDouble();
+
+            System.out.print("\nQual é a taxa de operação?" +
+                    "\nR: ");
+            double taxaOperacao = sc.nextDouble();
+
+            if (tipoConta == 1) {
+                System.out.print("\nQual é o limite de crédito para saque?" +
+                        "\nR: ");
+                double limiteCreditoSaque = sc.nextDouble();
+
+                return new ContaCorrente(numeroConta, saldo, taxaOperacao, limiteCreditoSaque);
+
+            } else if (tipoConta == 2) {
+                return new ContaPoupanca(numeroConta, saldo, taxaOperacao);
+            }
+        } else{
+            throw new ContaExistente();
+        }
+        
         return null;
     }
 }
